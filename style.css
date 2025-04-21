@@ -24,8 +24,17 @@ body {
   ul {
     list-style-type: none;
   }
-  
+
   li {
     margin-bottom: 10px;
+  }
+  
+  .task-list {
+    margin-left: 20px;
+    margin-top: 5px;
+  }
+  
+  .task-list li {
+    margin-bottom: 6px;
   }
   

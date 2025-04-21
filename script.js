@@ -4,29 +4,48 @@ const list = document.getElementById('homework-list');
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
-  const subject = document.getElementById('subject').value;
-  const task = document.getElementById('task').value;
+  const subject = document.getElementById('subject').value.trim();
+  const task = document.getElementById('task').value.trim();
 
-  if (subject && task) {
-    const li = document.createElement('li');
-    li.textContent = `${subject}: ${task}`;
+  if (!subject || !task) return;
 
-    // Create the "Confirm" button
-    const confirmBtn = document.createElement('button');
-    confirmBtn.textContent = '✔️ Confirm';
-    confirmBtn.style.marginLeft = '10px';
+  // Check if the subject section already exists
+  let subjectGroup = document.querySelector(`li[data-subject="${subject.toLowerCase()}"]`);
 
-    // When clicked, cross out the task
-    confirmBtn.addEventListener('click', function () {
-      li.style.textDecoration = 'line-through';
-      confirmBtn.disabled = true; // Optional: disable button after clicked
-    });
+  // If subject section doesn't exist, create it
+  if (!subjectGroup) {
+    subjectGroup = document.createElement('li');
+    subjectGroup.setAttribute('data-subject', subject.toLowerCase());
 
-    // Add button to the list item
-    li.appendChild(confirmBtn);
-    list.appendChild(li);
+    const subjectTitle = document.createElement('strong');
+    subjectTitle.textContent = subject;
 
-    form.reset();
+    const taskList = document.createElement('ul');
+    taskList.classList.add('task-list');
+
+    subjectGroup.appendChild(subjectTitle);
+    subjectGroup.appendChild(taskList);
+    list.appendChild(subjectGroup);
   }
+
+  // Add the new task under the subject's task list
+  const taskList = subjectGroup.querySelector('.task-list');
+
+  const taskItem = document.createElement('li');
+  taskItem.textContent = task;
+
+  const confirmBtn = document.createElement('button');
+  confirmBtn.textContent = '✔️ Confirm';
+  confirmBtn.style.marginLeft = '10px';
+
+  confirmBtn.addEventListener('click', function () {
+    taskItem.style.textDecoration = 'line-through';
+    confirmBtn.disabled = true;
+  });
+
+  taskItem.appendChild(confirmBtn);
+  taskList.appendChild(taskItem);
+
+  form.reset();
 });
 

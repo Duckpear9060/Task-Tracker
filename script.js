@@ -12,24 +12,21 @@ form.addEventListener('submit', function (e) {
 
   if (!subject || !task) return;
 
-  // Create task object
   const taskObj = {
     text: task,
     completed: false,
     dueDate
   };
 
-  // Add task to data
   if (!data[subject]) data[subject] = [];
   data[subject].push(taskObj);
   saveData();
-
   renderTasks();
   form.reset();
 });
 
 function renderTasks() {
-  list.innerHTML = ''; // Clear everything
+  list.innerHTML = '';
 
   for (const subject in data) {
     const subjectGroup = document.createElement('li');
@@ -44,7 +41,6 @@ function renderTasks() {
     data[subject].forEach((taskObj, index) => {
       const taskItem = document.createElement('li');
       taskItem.className = 'task-item';
-
       if (taskObj.completed) taskItem.classList.add('completed');
 
       const taskText = document.createElement('span');
@@ -54,7 +50,7 @@ function renderTasks() {
         taskText.textContent += ` (Due: ${taskObj.dueDate})`;
       }
 
-      // Confirm button
+      // Confirm Button
       const confirmBtn = document.createElement('button');
       confirmBtn.textContent = '✔️';
       confirmBtn.title = 'Confirm task';
@@ -67,7 +63,7 @@ function renderTasks() {
         renderTasks();
       });
 
-      // Delete button
+      // Delete Button
       const deleteBtn = document.createElement('button');
       deleteBtn.textContent = '🗑️';
       deleteBtn.title = 'Delete task';
@@ -96,6 +92,5 @@ function saveData() {
   localStorage.setItem('homeworkTasks', JSON.stringify(data));
 }
 
-// Initial load
 renderTasks();
 

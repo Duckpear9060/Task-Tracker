@@ -1,40 +1,42 @@
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f4f4f4;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  form {
-    margin-bottom: 20px;
-  }
-  
-  input {
-    padding: 8px;
-    margin-right: 5px;
-  }
-  
-  button {
-    padding: 8px 12px;
-  }
-  
-  ul {
-    list-style-type: none;
-  }
+.task-list {
+  margin-left: 20px;
+  margin-top: 5px;
+}
 
-  li {
-    margin-bottom: 10px;
-  }
-  
-  .task-list {
-    margin-left: 20px;
-    margin-top: 5px;
-  }
-  
-  .task-list li {
-    margin-bottom: 6px;
-  }
-  
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.task-item span {
+  flex-grow: 1;
+}
+
+.confirm-btn,
+.delete-btn {
+  margin-left: 8px;
+  padding: 4px 6px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.confirm-btn {
+  background-color: #d1ffd6;
+}
+
+.delete-btn {
+  background-color: #ffe3e3;
+}
+
+.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
